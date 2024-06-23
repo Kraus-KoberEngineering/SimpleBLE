@@ -30,6 +30,10 @@ int main() {
 
     std::cout << "The following connectable devices were found:" << std::endl;
     for (size_t i = 0; i < peripherals.size(); i++) {
+        if (!peripherals[i].is_connectable()) {
+            continue;
+        }
+
         std::cout << "[" << i << "] " << peripherals[i].identifier() << " [" << peripherals[i].address() << "]"
                   << std::endl;
     }
