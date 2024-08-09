@@ -258,8 +258,8 @@ void PeripheralBase::unsubscribe(BluetoothUUID const& service, BluetoothUUID con
 
     // Wait for the characteristic to stop notifying.
     // TODO: Upgrade SimpleDBus to provide a way to wait for this signal.
-    auto timeout = std::chrono::system_clock::now() + 5s;
-    while (characteristic_object->notifying() && std::chrono::system_clock::now() < timeout) {
+    auto timeout = std::chrono::steady_clock::now() + 5s;
+    while (characteristic_object->notifying() && std::chrono::steady_clock::now() < timeout) {
         std::this_thread::sleep_for(50ms);
     }
 }
